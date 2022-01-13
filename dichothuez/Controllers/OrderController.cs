@@ -1,6 +1,7 @@
 ﻿using dichothuez.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -11,32 +12,27 @@ namespace dichothuez.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ShipAppFormController : Controller
+    public class OrderController : Controller
     {
         private readonly IConfiguration _configuration;
 
-        public ShipAppFormController(IConfiguration configuration)
+        public OrderController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-
         [HttpGet]
         public JsonResult Get()
         {
             MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("dichothuezConnection"));
-            var shipAppForm = dbClient.GetDatabase("dichothuez").GetCollection<Shipping_Application_Form>("Shipping_Application_Form").AsQueryable();
-            return new JsonResult(shipAppForm);
+            var order = dbClient.GetDatabase("dichothuez").GetCollection<Order>("Order").AsQueryable();
+            return new JsonResult(order);
         }
-        [HttpPost]
-        public JsonResult Post(Shipping_Application_Form form)
+        [HttpGet("{id}")]
+        public JsonResult Get(string id)
         {
             MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("dichothuezConnection"));
-
-            dbClient.GetDatabase("dichothuez").GetCollection<Shipping_Application_Form>("Shipping_Application_Form").InsertOne(form);
-
-            var result = new JsonResult("Added Successfully");
-            result.StatusCode = 201;
-            return result;
+            var order = dbClient.GetDatabase("dichothuez").GetCollection<Order>("Order").AsQueryable().Where(c => c._id == id); ;
+            return new JsonResult(order);
         }
     }
 }

@@ -31,5 +31,16 @@ namespace dichothuez.Controllers
             var shipAppForm = dbClient.GetDatabase("dichothuez").GetCollection<Shipping_Application_Form>("Shipping_Application_Form").AsQueryable();
             return new JsonResult(shipAppForm);
         }
+        [HttpPost]
+        public JsonResult Post(Shipping_Application_Form form)
+        {
+            MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("dichothuezConnection"));
+
+            dbClient.GetDatabase("dichothuez").GetCollection<Shipping_Application_Form>("Shipping_Application_Form").InsertOne(form);
+
+            var result = new JsonResult("Added Successfully");
+            result.StatusCode = 201;
+            return result;
+        }
     }
 }

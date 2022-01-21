@@ -33,9 +33,8 @@ namespace dichothuez.Controllers
         [HttpGet("{id}", Name = "ReadDetail")]
         public ActionResult ReadDetail(string id)
         {
-            var productID = new MongoDB.Bson.ObjectId(id);
             MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("dichothuezConnection"));
-            var products = dbClient.GetDatabase("dichothuez").GetCollection<Product>("Product").AsQueryable().SingleOrDefault(product => product._id == productID);
+            var products = dbClient.GetDatabase("dichothuez").GetCollection<Product>("Product").AsQueryable().SingleOrDefault(product => product.Id == id);
 
             return new JsonResult(products);
         }
@@ -56,10 +55,10 @@ namespace dichothuez.Controllers
         [HttpPut]
         public ActionResult Update(Product product)
         {
-            var productID = product._id;
+            var productID = product.Id;
             MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("dichothuezConnection"));
 
-            dbClient.GetDatabase("dichothuez").GetCollection<Product>("Product").ReplaceOne(product => product._id == productID, product);
+            dbClient.GetDatabase("dichothuez").GetCollection<Product>("Product").ReplaceOne(product => product.Id == productID, product);
             var result = new JsonResult("Update Successfully");
             result.StatusCode = 201;
             return result;
@@ -68,9 +67,8 @@ namespace dichothuez.Controllers
         [HttpPost("{id}")]
         public ActionResult Delete(string id)
         {
-            var productID = new MongoDB.Bson.ObjectId(id);
             MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("dichothuezConnection"));
-            var products = dbClient.GetDatabase("dichothuez").GetCollection<Product>("Product").DeleteOne(product => product._id == productID);
+            var products = dbClient.GetDatabase("dichothuez").GetCollection<Product>("Product").DeleteOne(product => product.Id == id);
             
             var result = new JsonResult("Delete Successfully");
             result.StatusCode = 201;

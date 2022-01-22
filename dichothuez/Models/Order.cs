@@ -20,6 +20,8 @@ namespace dichothuez.Models
         public string is_paid { get; set; }
         public object[] product { get; set; }
         public string status { get; set; }
+
+        public string typeOrder { get; set; }
         public string total_cost { get; set; }
         public int month { get; set; }
         public int quater { get; set; }

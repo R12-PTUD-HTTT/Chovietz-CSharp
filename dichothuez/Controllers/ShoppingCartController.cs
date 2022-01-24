@@ -123,7 +123,7 @@ namespace dichothuez.Controllers
             {
                 MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("dichothuezConnection"));
 
-                var filter = Builders<Product>.Filter.Or(Builders<Product>.Filter.Gte("price", fromPrice) & Builders<Product>.Filter.Lte("price", toPrice))
+                var filter = Builders<Product>.Filter.Or(Builders<Product>.Filter.Gte("sale_price", fromPrice) & Builders<Product>.Filter.Lte("sale_price", toPrice))
                                                            & Builders<Product>.Filter.Eq("type", type) & Builders<Product>.Filter.Regex("name", new BsonRegularExpression(name, "i"));
 
                 var products = dbClient.GetDatabase("dichothuez").GetCollection<Product>("Product").Find(filter).ToList();

@@ -25,7 +25,7 @@ namespace dichothuez.Controllers
         public JsonResult Get(string id)
         {
             MongoClient dbClient = DBConnection.getInstance(_configuration);
-            var store = dbClient.GetDatabase("dichothuez").GetCollection<Store>("store").AsQueryable().Where(c => c._id == id); ;
+            var store = dbClient.GetDatabase("dichothuez").GetCollection<Store>("store").AsQueryable().Where(c => c.Id == id); ;
             return new JsonResult(store);
         }
     }

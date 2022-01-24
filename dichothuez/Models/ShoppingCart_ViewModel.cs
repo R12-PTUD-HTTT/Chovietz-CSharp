@@ -33,13 +33,16 @@ namespace dichothuez.Models
 
     public class Product_ViewModel
     {
-        public string IdProduct { get; set; }
-        public string ItemName { get; set; }
+        public string id { get; set; }
+        public string name { get; set; }
         public string imagelink { get; set; }
         public double saleprice { get; set; }
 
         public double price { get; set; }
         public int quantity { get; set; }
+        public string store_id { get; set; }
+        public string store_name { get; set; }
+        public string store_phone_number { get; set; }
     }
 
     public class CartItem_ViewModel

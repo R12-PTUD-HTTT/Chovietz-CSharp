@@ -21,6 +21,9 @@ namespace dichothuez.Models
         public int quantity { get; set; }
         public string rate { get; set; }
         public string description { get; set; }
+        public string store_id { get; set; }
+        public string store_name { get; set; }
+        public string store_phone_number { get; set; }
 
     }
 }

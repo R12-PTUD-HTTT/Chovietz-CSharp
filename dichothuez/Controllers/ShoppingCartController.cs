@@ -45,12 +45,15 @@ namespace dichothuez.Controllers
                             {
                                 cartView.Add(new Product_ViewModel
                                 {
-                                    IdProduct = checkItem.Id,
-                                    ItemName = checkItem.name,
+                                    id = checkItem.Id,
+                                    name = checkItem.name,
                                     quantity = it.quantity,
                                     price = checkItem.price,
                                     saleprice = checkItem.sale_price,
-                                    imagelink = checkItem.image_link
+                                    imagelink = checkItem.image_link,
+                                    store_id = checkItem.store_id,
+                                    store_name = checkItem.store_name,
+                                    store_phone_number = checkItem.store_phone_number
                                 });
                             }
                         }
@@ -90,12 +93,15 @@ namespace dichothuez.Controllers
                         {
                             cartView.Add(new Product_ViewModel
                             {
-                                IdProduct = checkItem.Id,
-                                ItemName = checkItem.name,
+                                id = checkItem.Id,
+                                name = checkItem.name,
                                 quantity = item.quantity,
                                 price = checkItem.price,
                                 saleprice = checkItem.sale_price,
-                                imagelink = checkItem.image_link
+                                imagelink = checkItem.image_link,
+                                store_id = checkItem.store_id,
+                                store_name = checkItem.store_name,
+                                store_phone_number = checkItem.store_phone_number
                             });
                         }
                     }

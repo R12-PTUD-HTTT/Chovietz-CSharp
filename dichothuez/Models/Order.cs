@@ -21,7 +21,7 @@ namespace dichothuez.Models
         public Receiver receiver { get; set; }
         public string payment_type { get; set; }
         public string is_paid { get; set; }
-        public object[] product { get; set; }
+        public Product[] product { get; set; }
         public string status { get; set; }
         public string typeOrder { get; set; }
         public string total_price { get; set; }

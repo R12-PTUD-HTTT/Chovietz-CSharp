@@ -46,6 +46,8 @@ namespace dichothuez.Controllers
             if(order.shipper != null ) order.shipperID = order.shipper.Id.ToString();
             if (order.shipper != null)  order.customerID = order.customer.Id.ToString();
             if (order.shipper != null) order.shopID = order.shop.Id;
+                
+            order.Id = null;
 
             DateTime date = new DateTime();
             order.created_date = date;
@@ -57,7 +59,8 @@ namespace dichothuez.Controllers
 
             return new JsonResult(order);
             }
-            catch (Exception ) {
+            catch (Exception ex ) {
+                Console.WriteLine(ex.ToString());
                 var result = new JsonResult("Có lỗi trong quá trình tạo");
                 result.StatusCode = 500;
                 return result;

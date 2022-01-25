@@ -50,7 +50,7 @@ namespace dichothuez.Controllers
 
             var filter = Builders<Customer>.Filter.Eq("Name", cus.Name);
 
-            var update = Builders<Customer>.Update.Set("Sdt", cus.Sdt);
+            var update = Builders<Customer>.Update.Set("phoneNumber", cus.PhoneNumber);
 
             dbClient.GetDatabase("dichothuez").GetCollection<Customer>("Customer").UpdateOne(filter, update);
 
